@@ -8,11 +8,14 @@
 unless os.windows?
   describe user('root') do
     it { should exist }
-    skip 'This is an example test, replace with your own test.'
   end
 end
 
 describe port(80) do
   it { should_not be_listening }
-  skip 'This is an example test, replace with your own test.'
+end
+
+describe file('/etc/motd') do
+  its('content') { should match (/Property of/) }
+  it { should be_owned_by 'root' }
 end
